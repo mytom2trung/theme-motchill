@@ -11,14 +11,14 @@
         <input id="film_id" type="hidden" value="{{ $currentMovie->id }}">
     </div>
 </div>
-<script src="/themes/motchill/motchill2/rating2/jquery.raty.js"></script>
+<script src="/themes/motchill/rating2/jquery.raty.js"></script>
 <script>
     var rated = false;
     $('#star').raty({
         number: 10,
-        starHalf: '/themes/motchill/motchill2/rating2/images/star-half.png',
-        starOff: '/themes/motchill/motchill2/rating2/images/star-off.png',
-        starOn: '/themes/motchill/motchill2/rating2/images/star-on.png',
+        starHalf: '/themes/motchill/rating2/images/star-half.png',
+        starOff: '/themes/motchill/rating2/images/star-off.png',
+        starOn: '/themes/motchill/rating2/images/star-on.png',
         click: function(score, evt) {
             if (!rated) {
                 $.ajax({

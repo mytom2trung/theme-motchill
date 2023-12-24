@@ -20,8 +20,8 @@
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <link href="/themes/motchill/motchill2/static/css/main.css?v=5" rel="stylesheet" media="all">
-    <link href="/themes/motchill/motchill2/static/css/ads.css" rel="stylesheet" media="all">
+    <link href="/themes/motchill/static/css/main.css?v=5" rel="stylesheet" media="all">
+    <link href="/themes/motchill/static/css/ads.css" rel="stylesheet" media="all">
 
     <script>
         function detectMob() {
@@ -114,10 +114,10 @@
 
     {!! get_theme_option('footer') !!}
 
-    <script src="/themes/motchill2/motchill/efc0d744/yii.js"></script>
-    <script src="/themes/motchill2/motchill/static/js/flickity.smart.min.js"></script>
-    <script src="/themes/motchill2/motchill/static/js/main.js?v=4"></script>
-    {{-- <script src="/themes/motchill2/motchill/js/ads_xx.js?v=7"></script> --}}
+    <script src="/themes/motchill/efc0d744/yii.js"></script>
+    <script src="/themes/motchill/static/js/flickity.smart.min.js"></script>
+    <script src="/themes/motchill/static/js/main.js?v=4"></script>
+    {{-- <script src="/themes/motchill/js/ads_xx.js?v=7"></script> --}}
 
     <div id="footer_fixed_ads"></div>
 

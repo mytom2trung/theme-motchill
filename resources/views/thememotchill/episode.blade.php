@@ -225,13 +225,13 @@
 @endsection
 
 @push('scripts')
-    <script src="/themes/motchill/motchill2/static/player/skin/juicycodes.js"></script>
-    <link href="/themes/motchill/motchill2/static/player/skin/juicycodes.css" rel="stylesheet" type="text/css">
+    <script src="/themes/motchill/static/player/skin/juicycodes.js"></script>
+    <link href="/themes/motchill/static/player/skin/juicycodes.css" rel="stylesheet" type="text/css">
 
     {{--    <script src="/themes/motchill/static/player/js/p2p-media-loader-core.min.js"></script> --}}
     {{--    <script src="/themes/motchill/static/player/js/p2p-media-loader-hlsjs.min.js"></script> --}}
 
-    <script src="/themes/motchill/motchill2/static/player/jwplayer.js"></script>
+    <script src="/themes/motchill/static/player/jwplayer.js"></script>
     {{--    <script src="/js/jwplayer-8.9.3.js"></script> --}}
     {{--    <script src="/js/hls.min.js"></script> --}}
     {{--    <script src="/js/jwplayer.hlsjs.min.js"></script> --}}
@@ -275,7 +275,7 @@
                         key: "{{ Setting::get('jwplayer_license') }}",
                         aspectratio: "16:9",
                         width: "100%",
-                        file: "/themes/motchill/motchill2/static/player/1s_blank.mp4",
+                        file: "/themes/motchill/static/player/1s_blank.mp4",
                         volume: 100,
                         mute: false,
                         autostart: true,
