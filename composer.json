@@ -16,6 +16,13 @@
             "Ophim\\ThemeMotchill\\Database\\Seeders\\": "database/seeders/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ophim\\ThemeMotchill\\ThemeMotchillServiceProvider"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "liumen",
