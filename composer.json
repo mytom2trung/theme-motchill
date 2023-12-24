@@ -11,7 +11,9 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Pnm\\ThemeMotchill\\": "src/"
+            "Ophim\\ThemeMotchill\\": "src/",
+            "Ophim\\ThemeMotchill\\Database\\Factories\\": "database/factories/",
+            "Ophim\\ThemeMotchill\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "authors": [
