@@ -20,7 +20,7 @@
             margin-right: 0;
         }
 
-        #player-loaded > div {
+        #player-loaded>div {
             position: absolute;
             top: 0;
             left: 0;
@@ -66,13 +66,8 @@
 
     <div id="ploption" class="text-center">
         @foreach ($currentMovie->episodes->where('slug', $episode->slug)->where('server', $episode->server) as $server)
-            <a
-                onclick="chooseStreamingServer(this)"
-                data-type="{{ $server->type }}"
-                data-id="{{ $server->id }}"
-                data-link="{{ $server->link }}"
-                class="streaming-server current btn-sv btn btn-primary"
-            >
+            <a onclick="chooseStreamingServer(this)" data-type="{{ $server->type }}" data-id="{{ $server->id }}"
+                data-link="{{ $server->link }}" class="streaming-server current btn-sv btn btn-primary">
                 Server #{{ $loop->iteration }}
             </a>
         @endforeach
@@ -91,23 +86,24 @@
                                 <div class="title">Tập phim</div>
                                 <ul class="nav nav-tabs active">
                                     @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
-                                        <li class="{{ $loop->index == 0 ? 'active' : ''}}"><a href="#tab_{{ $loop->index }}">{{ $server }}</a></li>
+                                        <li class="{{ $loop->index == 0 ? 'active' : '' }}"><a
+                                                href="#tab_{{ $loop->index }}">{{ $server }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
                         </div>
-                    
+
                         <div class="tab-content myui-panel_bd">
                             @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
-                                <div class="tab-pane fade in clearfix {{ $loop->index == 0 ? 'active' : ''}}" id="tab_{{ $loop->index }}">
-                                    <ul class="myui-content__list sort-list clearfix" style="max-height: 300px; overflow: auto;">
+                                <div class="tab-pane fade in clearfix {{ $loop->index == 0 ? 'active' : '' }}"
+                                    id="tab_{{ $loop->index }}">
+                                    <ul class="myui-content__list sort-list clearfix"
+                                        style="max-height: 300px; overflow: auto;">
                                         @foreach ($data->sortByDesc('name', SORT_NATURAL)->groupBy('name') as $name => $item)
                                             <li class="col-lg-8 col-md-7 col-sm-6 col-xs-4">
-                                                <a
-                                                    href="{{ $item->sortByDesc('type')->first()->getUrl() }}"
+                                                <a href="{{ $item->sortByDesc('type')->first()->getUrl() }}"
                                                     class="btn btn-default @if ($item->contains($episode)) active @endif"
-                                                    title="{{ $name }}"
-                                                >{{ $name }}</a>
+                                                    title="{{ $name }}">{{ $name }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -120,7 +116,8 @@
                     <div class="myui-panel-box clearfix">
                         <div class="myui-panel_hd">
                             <div class="myui-panel__head clearfix height-auto">
-                                <h1 class="title" itemprop="name">{{ $currentMovie->name }} - Tập {{ $episode->name }}</h1>
+                                <h1 class="title" itemprop="name">{{ $currentMovie->name }} - Tập {{ $episode->name }}
+                                </h1>
                                 <h2 class="title2">{{ $currentMovie->origin_name }}</h2>
                             </div>
                         </div>
@@ -135,7 +132,8 @@
                                         @foreach ($currentMovie->tags as $tag)
                                             <h3>
                                                 <strong>
-                                                    <a href="{{ $tag->getUrl() }}" title="{{ $tag->name }}" rel='tag'>
+                                                    <a href="{{ $tag->getUrl() }}" title="{{ $tag->name }}"
+                                                        rel='tag'>
                                                         {{ $tag->name }}
                                                     </a>
                                                 </strong>
@@ -194,10 +192,14 @@
                         }
                     </style>
                     <div style="color:red;font-weight:bold;padding:5px">
-                        Lưu ý các bạn không nên nhấp vào các đường link ở phần bình luận, kẻ gian có thể đưa virut vào thiết bị hoặc hack mất facebook của các bạn.
+                        Lưu ý các bạn không nên nhấp vào các đường link ở phần bình luận, kẻ gian có thể đưa virut vào thiết
+                        bị hoặc hack mất facebook của các bạn.
                     </div>
-                    <div data-order-by="reverse_time" id="commit-99011102" class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="" data-numposts="10"></div>
-                    <script>document.getElementById("commit-99011102").dataset.width = $("#commit-99011102").parent().width();</script>
+                    <div data-order-by="reverse_time" id="commit-99011102" class="fb-comments"
+                        data-href="{{ $currentMovie->getUrl() }}" data-width="" data-numposts="10"></div>
+                    <script>
+                        document.getElementById("commit-99011102").dataset.width = $("#commit-99011102").parent().width();
+                    </script>
                 </div>
             </div>
 
@@ -209,12 +211,13 @@
 
     {{-- Load player --}}
     <script>
-        $('.btn-sv').on('click', function () {
+        $('.btn-sv').on('click', function() {
             var __this = $(this);
 
             __this.parent().find('a.btn').removeClass('btn-active');
             __this.addClass('btn-active');
         });
+
         function removeAds(__this) {
             __this.closest('.player_ads').hide();
         }
@@ -222,16 +225,16 @@
 @endsection
 
 @push('scripts')
-    <script src="/themes/motchill/static/player/skin/juicycodes.js"></script>
-    <link href="/themes/motchill/static/player/skin/juicycodes.css" rel="stylesheet" type="text/css">
+    <script src="/themes/motchill/motchill2/static/player/skin/juicycodes.js"></script>
+    <link href="/themes/motchill/motchill2/static/player/skin/juicycodes.css" rel="stylesheet" type="text/css">
 
-{{--    <script src="/themes/motchill/static/player/js/p2p-media-loader-core.min.js"></script>--}}
-{{--    <script src="/themes/motchill/static/player/js/p2p-media-loader-hlsjs.min.js"></script>--}}
+    {{--    <script src="/themes/motchill/static/player/js/p2p-media-loader-core.min.js"></script> --}}
+    {{--    <script src="/themes/motchill/static/player/js/p2p-media-loader-hlsjs.min.js"></script> --}}
 
-    <script src="/themes/motchill/static/player/jwplayer.js"></script>
-{{--    <script src="/js/jwplayer-8.9.3.js"></script>--}}
-{{--    <script src="/js/hls.min.js"></script>--}}
-{{--    <script src="/js/jwplayer.hlsjs.min.js"></script>--}}
+    <script src="/themes/motchill/motchill2/static/player/jwplayer.js"></script>
+    {{--    <script src="/js/jwplayer-8.9.3.js"></script> --}}
+    {{--    <script src="/js/hls.min.js"></script> --}}
+    {{--    <script src="/js/jwplayer.hlsjs.min.js"></script> --}}
 
 
     <script>
@@ -272,7 +275,7 @@
                         key: "{{ Setting::get('jwplayer_license') }}",
                         aspectratio: "16:9",
                         width: "100%",
-                        file: "/themes/motchill/static/player/1s_blank.mp4",
+                        file: "/themes/motchill/motchill2/static/player/1s_blank.mp4",
                         volume: 100,
                         mute: false,
                         autostart: true,
@@ -353,14 +356,12 @@
                         skiptext: "Bỏ qua",
                         admessage: "Quảng cáo còn xx giây."
                     },
-                    tracks: [
-                        {
-                            "file": "/sub.vtt",
-                            "kind": "captions",
-                            label: "VN",
-                            default: "true"
-                        }
-                    ],
+                    tracks: [{
+                        "file": "/sub.vtt",
+                        "kind": "captions",
+                        label: "VN",
+                        default: "true"
+                    }],
                 };
 
                 if (type == 'm3u8') {
@@ -402,14 +403,18 @@
                     //         loader: engine.createLoaderClass(),
                     //     });
                     // } else {
-                        player.setup(objSetup);
+                    player.setup(objSetup);
                     // }
                 } else {
                     player.setup(objSetup);
                 }
 
-                player.addButton('<svg xmlns="http://www.w3.org/2000/svg" class="jw-svg-icon jw-svg-icon-rewind2" viewBox="0 0 240 240" focusable="false"><path d="m 25.993957,57.778 v 125.3 c 0.03604,2.63589 2.164107,4.76396 4.8,4.8 h 62.7 v -19.3 h -48.2 v -96.4 H 160.99396 v 19.3 c 0,5.3 3.6,7.2 8,4.3 l 41.8,-27.9 c 2.93574,-1.480087 4.13843,-5.04363 2.7,-8 -0.57502,-1.174985 -1.52502,-2.124979 -2.7,-2.7 l -41.8,-27.9 c -4.4,-2.9 -8,-1 -8,4.3 v 19.3 H 30.893957 c -2.689569,0.03972 -4.860275,2.210431 -4.9,4.9 z m 163.422413,73.04577 c -3.72072,-6.30626 -10.38421,-10.29683 -17.7,-10.6 -7.31579,0.30317 -13.97928,4.29374 -17.7,10.6 -8.60009,14.23525 -8.60009,32.06475 0,46.3 3.72072,6.30626 10.38421,10.29683 17.7,10.6 7.31579,-0.30317 13.97928,-4.29374 17.7,-10.6 8.60009,-14.23525 8.60009,-32.06475 0,-46.3 z m -17.7,47.2 c -7.8,0 -14.4,-11 -14.4,-24.1 0,-13.1 6.6,-24.1 14.4,-24.1 7.8,0 14.4,11 14.4,24.1 0,13.1 -6.5,24.1 -14.4,24.1 z m -47.77056,9.72863 v -51 l -4.8,4.8 -6.8,-6.8 13,-12.99999 c 3.02543,-3.03598 8.21053,-0.88605 8.2,3.4 v 62.69999 z"></path></svg>', "Forward 10 Seconds", () => player.seek(player.getPosition() + 10), "Forward 10 Seconds");
-                player.addButton('<svg xmlns="http://www.w3.org/2000/svg" class="jw-svg-icon jw-svg-icon-rewind" viewBox="0 0 240 240" focusable="false"><path d="M113.2,131.078a21.589,21.589,0,0,0-17.7-10.6,21.589,21.589,0,0,0-17.7,10.6,44.769,44.769,0,0,0,0,46.3,21.589,21.589,0,0,0,17.7,10.6,21.589,21.589,0,0,0,17.7-10.6,44.769,44.769,0,0,0,0-46.3Zm-17.7,47.2c-7.8,0-14.4-11-14.4-24.1s6.6-24.1,14.4-24.1,14.4,11,14.4,24.1S103.4,178.278,95.5,178.278Zm-43.4,9.7v-51l-4.8,4.8-6.8-6.8,13-13a4.8,4.8,0,0,1,8.2,3.4v62.7l-9.6-.1Zm162-130.2v125.3a4.867,4.867,0,0,1-4.8,4.8H146.6v-19.3h48.2v-96.4H79.1v19.3c0,5.3-3.6,7.2-8,4.3l-41.8-27.9a6.013,6.013,0,0,1-2.7-8,5.887,5.887,0,0,1,2.7-2.7l41.8-27.9c4.4-2.9,8-1,8,4.3v19.3H209.2A4.974,4.974,0,0,1,214.1,57.778Z"></path></svg>', "Rewind 10 Seconds", () => player.seek(player.getPosition() - 10), "Rewind 10 Seconds");
+                player.addButton(
+                    '<svg xmlns="http://www.w3.org/2000/svg" class="jw-svg-icon jw-svg-icon-rewind2" viewBox="0 0 240 240" focusable="false"><path d="m 25.993957,57.778 v 125.3 c 0.03604,2.63589 2.164107,4.76396 4.8,4.8 h 62.7 v -19.3 h -48.2 v -96.4 H 160.99396 v 19.3 c 0,5.3 3.6,7.2 8,4.3 l 41.8,-27.9 c 2.93574,-1.480087 4.13843,-5.04363 2.7,-8 -0.57502,-1.174985 -1.52502,-2.124979 -2.7,-2.7 l -41.8,-27.9 c -4.4,-2.9 -8,-1 -8,4.3 v 19.3 H 30.893957 c -2.689569,0.03972 -4.860275,2.210431 -4.9,4.9 z m 163.422413,73.04577 c -3.72072,-6.30626 -10.38421,-10.29683 -17.7,-10.6 -7.31579,0.30317 -13.97928,4.29374 -17.7,10.6 -8.60009,14.23525 -8.60009,32.06475 0,46.3 3.72072,6.30626 10.38421,10.29683 17.7,10.6 7.31579,-0.30317 13.97928,-4.29374 17.7,-10.6 8.60009,-14.23525 8.60009,-32.06475 0,-46.3 z m -17.7,47.2 c -7.8,0 -14.4,-11 -14.4,-24.1 0,-13.1 6.6,-24.1 14.4,-24.1 7.8,0 14.4,11 14.4,24.1 0,13.1 -6.5,24.1 -14.4,24.1 z m -47.77056,9.72863 v -51 l -4.8,4.8 -6.8,-6.8 13,-12.99999 c 3.02543,-3.03598 8.21053,-0.88605 8.2,3.4 v 62.69999 z"></path></svg>',
+                    "Forward 10 Seconds", () => player.seek(player.getPosition() + 10), "Forward 10 Seconds");
+                player.addButton(
+                    '<svg xmlns="http://www.w3.org/2000/svg" class="jw-svg-icon jw-svg-icon-rewind" viewBox="0 0 240 240" focusable="false"><path d="M113.2,131.078a21.589,21.589,0,0,0-17.7-10.6,21.589,21.589,0,0,0-17.7,10.6,44.769,44.769,0,0,0,0,46.3,21.589,21.589,0,0,0,17.7,10.6,21.589,21.589,0,0,0,17.7-10.6,44.769,44.769,0,0,0,0-46.3Zm-17.7,47.2c-7.8,0-14.4-11-14.4-24.1s6.6-24.1,14.4-24.1,14.4,11,14.4,24.1S103.4,178.278,95.5,178.278Zm-43.4,9.7v-51l-4.8,4.8-6.8-6.8,13-13a4.8,4.8,0,0,1,8.2,3.4v62.7l-9.6-.1Zm162-130.2v125.3a4.867,4.867,0,0,1-4.8,4.8H146.6v-19.3h48.2v-96.4H79.1v19.3c0,5.3-3.6,7.2-8,4.3l-41.8-27.9a6.013,6.013,0,0,1-2.7-8,5.887,5.887,0,0,1,2.7-2.7l41.8-27.9c4.4-2.9,8-1,8,4.3v19.3H209.2A4.974,4.974,0,0,1,214.1,57.778Z"></path></svg>',
+                    "Rewind 10 Seconds", () => player.seek(player.getPosition() - 10), "Rewind 10 Seconds");
 
                 const resumeData = 'OPCMS-PlayerPosition-' + id;
 

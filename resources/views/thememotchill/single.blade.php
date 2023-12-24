@@ -25,30 +25,27 @@
             <div class="col-md-wide-7 col-xs-1 padding-0">
                 <div class="detail-block">
                     <div class="myui-content__thumb">
-                        <a
-                            class="myui-vodlist__thumb img-md-220 img-sm-220 img-xs-130 picture"
-                            href="{{ $watchUrl }}"
+                        <a class="myui-vodlist__thumb img-md-220 img-sm-220 img-xs-130 picture" href="{{ $watchUrl }}"
                             title="Xem phim {{ $currentMovie->name }}">
-                            <img
-                                itemprop="image"
-                                alt="Xem phim {{ $currentMovie->name }}"
+                            <img itemprop="image" alt="Xem phim {{ $currentMovie->name }}"
                                 src="{{ $currentMovie->getThumbUrl() }}" />
-                                <span class="play hidden-xs"></span>
-                                <span class="btn btn-default btn-block btn-watch">XEM PHIM</span>
-                            </a>
-                        </div>
+                            <span class="play hidden-xs"></span>
+                            <span class="btn btn-default btn-block btn-watch">XEM PHIM</span>
+                        </a>
+                    </div>
                     <div class="myui-content__detail">
                         <h1 class="title text-fff" itemprop="name">{{ $currentMovie->name }}</h1>
                         <h2 class="title2">{{ $currentMovie->origin_name }}</h2>
                         <div class="myui-media-info">
                             <div class="info-block">
                                 <h6>Trạng thái:
-                                    <span itemprop="duration" class="badge">{{ $currentMovie->episode_current }} {{ $currentMovie->language }}</span>
+                                    <span itemprop="duration" class="badge">{{ $currentMovie->episode_current }}
+                                        {{ $currentMovie->language }}</span>
                                 </h6>
                                 <h6>Thể loại:
                                     {!! $currentMovie->categories->map(function ($category) {
-                                        return '<a href="' . $category->getUrl() . '" tite="' . $category->name . '">' . $category->name . '</a>';
-                                    })->implode(', ') !!}
+                                            return '<a href="' . $category->getUrl() . '" tite="' . $category->name . '">' . $category->name . '</a>';
+                                        })->implode(', ') !!}
                                 </h6>
                                 <h6>Đạo diễn:
                                     {!! count($currentMovie->directors)
@@ -67,7 +64,13 @@
                                 <h6>Diễn viên:
                                     {!! count($currentMovie->actors)
                                         ? $currentMovie->actors->map(function ($actor) {
-                                                return '<a href="' . $actor->getUrl() . '" tite="Diễn viên ' . $actor->name . '"><span itemprop="actor">' . $actor->name . '</span></a>';
+                                                return '<a href="' .
+                                                    $actor->getUrl() .
+                                                    '" tite="Diễn viên ' .
+                                                    $actor->name .
+                                                    '"><span itemprop="actor">' .
+                                                    $actor->name .
+                                                    '</span></a>';
                                             })->implode(', ')
                                         : 'N/A' !!}
                                 </h6>
@@ -107,57 +110,61 @@
                 </div>
 
                 @if (get_theme_option('show_fb_comment_in_single'))
-                <div class="myui-panel myui-panel-bg clearfix">
-                    <style>
-                        @media only screen and (max-width: 767px) {
-                            .fb-comments {
-                                width: 100% !important
+                    <div class="myui-panel myui-panel-bg clearfix">
+                        <style>
+                            @media only screen and (max-width: 767px) {
+                                .fb-comments {
+                                    width: 100% !important
+                                }
+
+                                .fb-comments iframe[style] {
+                                    width: 100% !important
+                                }
+
+                                .fb-like-box {
+                                    width: 100% !important
+                                }
+
+                                .fb-like-box iframe[style] {
+                                    width: 100% !important
+                                }
+
+                                .fb-comments span {
+                                    width: 100% !important
+                                }
+
+                                .fb-comments iframe span[style] {
+                                    width: 100% !important
+                                }
+
+                                .fb-like-box span {
+                                    width: 100% !important
+                                }
+
+                                .fb-like-box iframe span[style] {
+                                    width: 100% !important
+                                }
                             }
 
-                            .fb-comments iframe[style] {
-                                width: 100% !important
-                            }
-
-                            .fb-like-box {
-                                width: 100% !important
-                            }
-
-                            .fb-like-box iframe[style] {
-                                width: 100% !important
-                            }
-
+                            .fb-comments,
                             .fb-comments span {
-                                width: 100% !important
+                                background-color: #eee
                             }
 
-                            .fb-comments iframe span[style] {
-                                width: 100% !important
+                            .fb-comments {
+                                margin-bottom: 20px
                             }
-
-                            .fb-like-box span {
-                                width: 100% !important
-                            }
-
-                            .fb-like-box iframe span[style] {
-                                width: 100% !important
-                            }
-                        }
-
-                        .fb-comments,
-                        .fb-comments span {
-                            background-color: #eee
-                        }
-
-                        .fb-comments {
-                            margin-bottom: 20px
-                        }
-                    </style>
-                    <div style="color:red;font-weight:bold;padding:5px">
-                        Lưu ý các bạn không nên nhấp vào các đường link ở phần bình luận, kẻ gian có thể đưa virut vào thiết bị hoặc hack mất facebook của các bạn.
+                        </style>
+                        <div style="color:red;font-weight:bold;padding:5px">
+                            Lưu ý các bạn không nên nhấp vào các đường link ở phần bình luận, kẻ gian có thể đưa virut vào
+                            thiết bị hoặc hack mất facebook của các bạn.
+                        </div>
+                        <div data-order-by="reverse_time" id="commit-99011102" class="fb-comments"
+                            data-href="{{ $currentMovie->getUrl() }}" data-width="" data-numposts="10"></div>
+                        <script>
+                            document.getElementById("commit-99011102").dataset.width = $("#commit-99011102").parent().width();
+                        </script>
                     </div>
-                    <div data-order-by="reverse_time" id="commit-99011102" class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="" data-numposts="10"></div>
-                    <script>document.getElementById("commit-99011102").dataset.width = $("#commit-99011102").parent().width();</script>
-                </div>
                 @endif
 
                 <div class="myui-panel myui-panel-bg clearfix">
@@ -171,14 +178,14 @@
                             @foreach ($movie_related as $movie)
                                 <li class="col-md-4 col-sm-4 col-xs-3">
                                     <div class="myui-vodlist__box">
-                                        <a class="myui-vodlist__thumb"
-                                            href="{{ $movie->getUrl() }}"
+                                        <a class="myui-vodlist__thumb" href="{{ $movie->getUrl() }}"
                                             title="{{ $movie->name }}"
                                             style="background: url({{ $movie->getThumbUrl() }});">
-                                            
+
                                             <span class="play hidden-xs"></span>
-                                            <span class="pic-tag pic-tag-top">{{ $movie->episode_current }} {{ $movie->language }}</span>
-                                            </a>
+                                            <span class="pic-tag pic-tag-top">{{ $movie->episode_current }}
+                                                {{ $movie->language }}</span>
+                                        </a>
                                         <div class="myui-vodlist__detail">
                                             <h4 class="title text-overflow">
                                                 <a href="{{ $movie->getUrl() }}" title="{{ $movie->name }}">
@@ -204,6 +211,6 @@
     </div>
 @endsection
 
-@push('scripts')   
+@push('scripts')
     {!! setting('site_scripts_facebook_sdk') !!}
 @endpush

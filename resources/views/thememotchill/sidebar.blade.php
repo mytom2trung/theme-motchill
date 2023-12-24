@@ -7,23 +7,23 @@
                 $list = explode('|', $list);
                 [$label, $relation, $field, $val, $sortKey, $alg, $limit, $template] = array_merge($list, ['Phim hot', '', 'type', 'series', 'view_total', 'desc', 4, 'top_thumb']);
                 try {
-                     if ($relation == 'trending') {
+                    if ($relation == 'trending') {
                         $dataMovies = [
-                            'd' => \Ophim\Core\Models\Movie::where('is_copyright', 0)
+                            'd' => \KKPhim\Core\Models\Movie::where('is_copyright', 0)
                                 ->orderBy('view_day', 'desc')
                                 ->limit($limit)
                                 ->get(),
-                            'w' => \Ophim\Core\Models\Movie::where('is_copyright', 0)
+                            'w' => \KKPhim\Core\Models\Movie::where('is_copyright', 0)
                                 ->orderBy('view_week', 'desc')
                                 ->limit($limit)
                                 ->get(),
-                            'm' => \Ophim\Core\Models\Movie::where('is_copyright', 0)
+                            'm' => \KKPhim\Core\Models\Movie::where('is_copyright', 0)
                                 ->orderBy('view_month', 'desc')
                                 ->limit($limit)
-                                ->get()
+                                ->get(),
                         ];
                     } else {
-                        $dataMovies = \Ophim\Core\Models\Movie::when($relation, function ($query) use ($relation, $field, $val) {
+                        $dataMovies = \KKPhim\Core\Models\Movie::when($relation, function ($query) use ($relation, $field, $val) {
                             $query->whereHas($relation, function ($rel) use ($field, $val) {
                                 $rel->where($field, $val);
                             });
@@ -39,7 +39,7 @@
                     $data[] = [
                         'label' => $label,
                         'template' => $template,
-                        'data' => $dataMovies
+                        'data' => $dataMovies,
                     ];
                 } catch (\Exception $e) {
                     # code

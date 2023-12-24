@@ -1,6 +1,6 @@
 <?php
 
-namespace Ophim\ThemeMotchill;
+namespace KKPhim\ThemeMotchill;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,6 +13,13 @@ class ThemeMotchillServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        try {
+            foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
+                require_once $filename;
+            }
+        } catch (\Exception $e) {
+            //throw $e;
+        }
         $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'themes');
 
         $this->publishes([
@@ -25,23 +32,18 @@ class ThemeMotchillServiceProvider extends ServiceProvider
         config(['themes' => array_merge(config('themes', []), [
             'motchill' => [
                 'name' => 'Motchill',
-                'author' => 'opdlnf01@gmail.com',
-                'package_name' => 'ophimcms/theme-motchill',
+                'author' => 'support@kkphim.com',
+                'package_name' => 'haiau009/kkphim-motchill',
                 'publishes' => ['motchill-assets'],
                 'preview_image' => '',
                 'options' => [
                     [
-                        'name' => 'recommendations',
-                        'label' => 'Phim đề cử',
-                        'type' => 'code',
-                        'hint' => 'display_label|find_by_field|value|limit|sort_by_field|sort_algo',
-                        'value' => <<<EOT
-                        Phim đề cử|is_recommended|1|10|view_week|desc
-                        Phim HOT|is_copyright|0|10|view_week|desc
-                        Phim ngẫu nhiên|random|random|10|view_week|desc
-                        EOT,
-                        'attributes' => [
-                            'rows' => 5
+                        'name' => 'recommendations_limit',
+                        'label' => 'Recommended movies limit',
+                        'type' => 'number',
+                        'value' => 10,
+                        'wrapperAttributes' => [
+                            'class' => 'form-group col-md-4',
                         ],
                         'tab' => 'List'
                     ],
@@ -49,7 +51,7 @@ class ThemeMotchillServiceProvider extends ServiceProvider
                         'name' => 'per_page_limit',
                         'label' => 'Pages limit',
                         'type' => 'number',
-                        'value' => 48,
+                        'value' => 20,
                         'wrapperAttributes' => [
                             'class' => 'form-group col-md-4',
                         ],
@@ -59,7 +61,7 @@ class ThemeMotchillServiceProvider extends ServiceProvider
                         'name' => 'movie_related_limit',
                         'label' => 'Movies related limit',
                         'type' => 'number',
-                        'value' => 24,
+                        'value' => 10,
                         'wrapperAttributes' => [
                             'class' => 'form-group col-md-4',
                         ],
@@ -71,11 +73,10 @@ class ThemeMotchillServiceProvider extends ServiceProvider
                         'type' => 'code',
                         'hint' => 'display_label|relation|find_by_field|value|limit|show_more_url',
                         'value' => <<<EOT
-                        Phim mới cập nhật||is_copyright|0|12|/danh-sach/phim-moi
-                        Phim chiếu rạp mới||is_shown_in_theater|1|12|/danh-sach/phim-chieu-rap
-                        Phim bộ mới||type|series|12|/danh-sach/phim-bo
-                        Phim lẻ mới||type|single|12|/danh-sach/phim-le
-                        Phim hoạt hình|categories|slug|hoat-hinh|12|/the-loai/hoat-hinh
+                        Phim chiếu rạp mới||is_shown_in_theater|1|8|/danh-sach/phim-chieu-rap
+                        Phim bộ mới||type|series|8|/danh-sach/phim-bo
+                        Phim lẻ mới||type|single|8|/danh-sach/phim-le
+                        Phim hoạt hình|categories|slug|hoat-hinh|8|/the-loai/hoat-hinh
                         EOT,
                         'attributes' => [
                             'rows' => 5
@@ -86,12 +87,11 @@ class ThemeMotchillServiceProvider extends ServiceProvider
                         'name' => 'hotest',
                         'label' => 'Danh sách hot',
                         'type' => 'code',
-                        'hint' => 'Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_thumb|top_trending)',
+                        'hint' => 'Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_text|top_thumb)',
                         'value' => <<<EOT
-                        Trending|trending|||||6|top_trending
-                        Top phim lẻ||type|single|view_week|desc|6|top_thumb
-                        Top phim bộ||type|series|view_week|desc|6|top_thumb
-                        Bảng xếp hạng||is_copyright|0|view_week|desc|6|top_thumb
+                        Sắp chiếu||status|trailer|publish_year|desc|10|top_text
+                        Top phim lẻ||type|single|view_week|desc|10|top_thumb
+                        Top phim bộ||type|series|view_week|desc|10|top_thumb
                         EOT,
                         'attributes' => [
                             'rows' => 5
@@ -109,7 +109,7 @@ class ThemeMotchillServiceProvider extends ServiceProvider
                         'name' => 'body_attributes',
                         'label' => 'Body attributes',
                         'type' => 'text',
-                        'value' => 'class="active"',
+                        'value' => "",
                         'tab' => 'Custom CSS'
                     ],
                     [
@@ -165,13 +165,6 @@ class ThemeMotchillServiceProvider extends ServiceProvider
                         'type' => 'code',
                         'value' => '',
                         'tab' => 'Ads'
-                    ],
-                    [
-                        'name' => 'show_fb_comment_in_single',
-                        'label' => 'Show FB Comment In Single',
-                        'type' => 'boolean',
-                        'value' => false,
-                        'tab' => 'FB Comment'
                     ]
                 ],
             ]

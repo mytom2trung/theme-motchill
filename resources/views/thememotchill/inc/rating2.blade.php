@@ -4,22 +4,22 @@
         <div id="div_average" style="line-height: 16px; margin: 0 5px; ">
             <span id="hint"></span>
             (<span class="average" id="average" itemprop="ratingValue">{{ $currentMovie->getRatingStar() }}</span>
-                điểm /
-            <span id="rate_count" itemprop="ratingCount">{{ $currentMovie->getRatingCount()}}</span> &nbsp;lượt)
+            điểm /
+            <span id="rate_count" itemprop="ratingCount">{{ $currentMovie->getRatingCount() }}</span> &nbsp;lượt)
         </div>
         <meta itemprop="bestRating" content="10" />
         <input id="film_id" type="hidden" value="{{ $currentMovie->id }}">
     </div>
 </div>
-<script src="/themes/motchill/rating2/jquery.raty.js"></script>
+<script src="/themes/motchill/motchill2/rating2/jquery.raty.js"></script>
 <script>
     var rated = false;
     $('#star').raty({
         number: 10,
-        starHalf: '/themes/motchill/rating2/images/star-half.png',
-        starOff: '/themes/motchill/rating2/images/star-off.png',
-        starOn: '/themes/motchill/rating2/images/star-on.png',
-        click: function (score, evt) {
+        starHalf: '/themes/motchill/motchill2/rating2/images/star-half.png',
+        starOff: '/themes/motchill/motchill2/rating2/images/star-off.png',
+        starOn: '/themes/motchill/motchill2/rating2/images/star-on.png',
+        click: function(score, evt) {
             if (!rated) {
                 $.ajax({
                     url: '{{ route('movie.rating', ['movie' => $currentMovie->slug]) }}',
@@ -33,7 +33,7 @@
                     },
                     type: 'post',
                     dataType: 'json',
-                    success: function (res) {
+                    success: function(res) {
                         alert("Đánh giá của bạn đã được gửi đi!");
                         console.log(res.avgRate);
                         $('#average').html(res.avgRate);

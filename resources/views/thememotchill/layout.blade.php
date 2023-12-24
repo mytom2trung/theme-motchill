@@ -1,28 +1,27 @@
 @extends('themes::thememotchill.layout_core')
 
 @php
-    $menu = \Ophim\Core\Models\Menu::getTree();
+    $menu = \KKPhim\Core\Models\Menu::getTree();
     $logo = setting('site_logo', '');
-    preg_match( '@src="([^"]+)"@' , $logo, $match );
+    preg_match('@src="([^"]+)"@', $logo, $match);
 
     // will return /images/image.jpg
     $logo = array_pop($match);
 @endphp
 
-@push('header') 
-    {{-- @if(!(new \Jenssegers\Agent\Agent())->isDesktop())
+@push('header')
+    {{-- @if (!(new \Jenssegers\Agent\Agent())->isDesktop())
         <link rel="stylesheet" type="text/css" href="/themes/motchill/css/ipad.css?v=1.0.5" />
     @endif --}}
 
     <link href="{{ url('/') }}" rel="alternate" hreflang="vi">
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-    </script>
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <link href="/themes/motchill/static/css/main.css?v=5" rel="stylesheet" media="all">
-    <link href="/themes/motchill/static/css/ads.css" rel="stylesheet" media="all">
+    <link href="/themes/motchill/motchill2/static/css/main.css?v=5" rel="stylesheet" media="all">
+    <link href="/themes/motchill/motchill2/static/css/ads.css" rel="stylesheet" media="all">
 
     <script>
         function detectMob() {
@@ -57,7 +56,9 @@
         }
 
         @media all and (min-width: 813px) {
-            .m-nav, .m-nav-over {
+
+            .m-nav,
+            .m-nav-over {
                 display: none !important;
             }
         }
@@ -88,10 +89,10 @@
 
 @section('body')
     @include('themes::thememotchill.inc.header')
-   
+
     <div class="container">
         <div id="top_ads"></div>
-        
+
         @if (get_theme_option('ads_header'))
             {!! get_theme_option('ads_header') !!}
         @endif
@@ -101,9 +102,9 @@
             <div class="clear"></div> --}}
 
             @yield('breadcrumb')
-            @yield('content')            
+            @yield('content')
         </div>
-    </div>        
+    </div>
 @endsection
 
 @section('footer')
@@ -113,10 +114,10 @@
 
     {!! get_theme_option('footer') !!}
 
-    <script src="/themes/motchill/efc0d744/yii.js"></script>
-    <script src="/themes/motchill/static/js/flickity.smart.min.js"></script>
-    <script src="/themes/motchill/static/js/main.js?v=4"></script>
-    {{-- <script src="/themes/motchill/js/ads_xx.js?v=7"></script> --}}
+    <script src="/themes/motchill2/motchill/efc0d744/yii.js"></script>
+    <script src="/themes/motchill2/motchill/static/js/flickity.smart.min.js"></script>
+    <script src="/themes/motchill2/motchill/static/js/main.js?v=4"></script>
+    {{-- <script src="/themes/motchill2/motchill/js/ads_xx.js?v=7"></script> --}}
 
     <div id="footer_fixed_ads"></div>
 
@@ -124,7 +125,7 @@
     <div id="fb-root"></div>
 
     <script>
-        window.fbAsyncInit = function () {
+        window.fbAsyncInit = function() {
             FB.init({
                 appId: '{{ setting('social_facebook_app_id') }}',
                 xfbml: true,
@@ -133,7 +134,7 @@
             FB.AppEvents.logPageView();
         };
 
-        (function (d, s, id) {
+        (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {
                 return;
@@ -146,7 +147,7 @@
     </script>
 
     <script>
-        $('body').on('click', '.nav-tabs li a', function () {
+        $('body').on('click', '.nav-tabs li a', function() {
             var tabactive = $(this).attr('href');
             $(this).closest('.nav-tabs').find('li').removeClass('active');
             $(this).parent().addClass('active');

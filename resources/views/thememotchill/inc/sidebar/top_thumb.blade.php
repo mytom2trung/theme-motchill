@@ -9,18 +9,18 @@
             @foreach ($top['data'] as $key => $movie)
                 <li>
                     <div class="thumb">
-                        <a class="myui-vodlist__thumb img-xs-70"
-                            style="background: url({{$movie->getThumbUrl()}});"
-                            href="{{$movie->getUrl()}}" title="{{$movie->name}}">
+                        <a class="myui-vodlist__thumb img-xs-70" style="background: url({{ $movie->getThumbUrl() }});"
+                            href="{{ $movie->getUrl() }}" title="{{ $movie->name }}">
                         </a>
                     </div>
                     <div class="detail detail-side">
                         <h4 class="title">
-                            <a class="icon-btn" href="{{$movie->getUrl()}}">
-                                {{$movie->name}}
+                            <a class="icon-btn" href="{{ $movie->getUrl() }}">
+                                {{ $movie->name }}
                             </a>
                         </h4>
-                        <p class="font-12"><span class="text-muted">{{$movie->episode_current}} {{$movie->language}}</span></p>
+                        <p class="font-12"><span class="text-muted">{{ $movie->episode_current }}
+                                {{ $movie->language }}</span></p>
                     </div>
                 </li>
             @endforeach

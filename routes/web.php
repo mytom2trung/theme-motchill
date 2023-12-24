@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Ophim\ThemeMotchill\Controllers\ThemeMotchillController;
+use KKPhim\ThemeMotchill\Controllers\ThemeMotchillController;
 
 // --------------------------
 // Custom Backpack Routes
@@ -15,13 +15,6 @@ Route::group([
     ),
 ], function () {
     Route::get('/', [ThemeMotchillController::class, 'index']);
-
-    Route::get('/ajax-list-ep', [ThemeMotchillController::class, 'getListEpisodeAjax'])
-        ->name('movies.ajax_list_ep');
-
-
-    Route::get('/playeropt', [ThemeMotchillController::class, 'getPlayerOptAjax'])
-        ->name('movies.ajax_playeropt');
 
     Route::get(setting('site_routes_category', '/the-loai/{category}'), [ThemeMotchillController::class, 'getMovieOfCategory'])
         ->where(['category' => '.+', 'id' => '[0-9]+'])
@@ -51,8 +44,8 @@ Route::group([
         ->where(['movie' => '.+', 'movie_id' => '[0-9]+', 'episode' => '.+', 'id' => '[0-9]+'])
         ->name('episodes.show');
 
-    Route::post(sprintf('/%s/{movie}/{episode}/report', config('ophim.routes.movie', 'phim')), [ThemeMotchillController::class, 'reportEpisode'])->name('episodes.report');
-    Route::post(sprintf('/%s/{movie}/rate', config('ophim.routes.movie', 'phim')), [ThemeMotchillController::class, 'rateMovie'])->name('movie.rating');
+    Route::post(sprintf('/%s/{movie}/{episode}/report', config('kkphim.routes.movie', 'phim')), [ThemeMotchillController::class, 'reportEpisode'])->name('episodes.report');
+    Route::post(sprintf('/%s/{movie}/rate', config('kkphim.routes.movie', 'phim')), [ThemeMotchillController::class, 'rateMovie'])->name('movie.rating');
 
     Route::get(setting('site_routes_movie', '/phim/{movie}'), [ThemeMotchillController::class, 'getMovieOverview'])
         ->where(['movie' => '.+', 'id' => '[0-9]+'])

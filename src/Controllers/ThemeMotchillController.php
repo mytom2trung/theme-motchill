@@ -1,17 +1,17 @@
 <?php
 
-namespace Ophim\Thememotchill\Controllers;
+namespace KKPhim\Thememotchill\Controllers;
 
 use Backpack\Settings\app\Models\Setting;
 use Illuminate\Http\Request;
-use Ophim\Core\Models\Actor;
-use Ophim\Core\Models\Catalog;
-use Ophim\Core\Models\Category;
-use Ophim\Core\Models\Director;
-use Ophim\Core\Models\Episode;
-use Ophim\Core\Models\Movie;
-use Ophim\Core\Models\Region;
-use Ophim\Core\Models\Tag;
+use KKPhim\Core\Models\Actor;
+use KKPhim\Core\Models\Catalog;
+use KKPhim\Core\Models\Category;
+use KKPhim\Core\Models\Director;
+use KKPhim\Core\Models\Episode;
+use KKPhim\Core\Models\Movie;
+use KKPhim\Core\Models\Region;
+use KKPhim\Core\Models\Tag;
 
 use Illuminate\Support\Facades\Cache;
 
@@ -51,7 +51,7 @@ class ThememotchillController
                 if (request('filter')['sort'] == 'view') {
                     return $movie->orderBy('view_total', 'desc');
                 }
-            })->paginate();
+            })->paginate(get_theme_option('per_page_limit'));
 
             return view('themes::thememotchill.catalog', [
                 'data' => $data,
@@ -73,10 +73,10 @@ class ThememotchillController
 
         $movie->generateSeoTags();
 
-        $movie->increment('view_total', 1);
-        $movie->increment('view_day', 1);
-        $movie->increment('view_week', 1);
-        $movie->increment('view_month', 1);
+        $movie->increment('view_total', 552);
+        $movie->increment('view_day', 552);
+        $movie->increment('view_week', 552);
+        $movie->increment('view_month', 552);
 
         $movie_related_cache_key = 'movie_related:' . $movie->id;
         $movie_related = Cache::get($movie_related_cache_key);
@@ -108,10 +108,10 @@ class ThememotchillController
 
         $episode->generateSeoTags();
 
-        $movie->increment('view_total', 1);
-        $movie->increment('view_day', 1);
-        $movie->increment('view_week', 1);
-        $movie->increment('view_month', 1);
+        $movie->increment('view_total', 552);
+        $movie->increment('view_day', 552);
+        $movie->increment('view_week', 552);
+        $movie->increment('view_month', 552);
 
         $movie_related_cache_key = 'movie_related:' . $movie->id;
         $movie_related = Cache::get($movie_related_cache_key);
@@ -240,7 +240,7 @@ class ThememotchillController
 
             [$relation_table, $relation_field, $relation_val] = array_merge($relation_config, ['', '', '']);
             try {
-                $movies = \Ophim\Core\Models\Movie::when($relation_table, function ($query) use ($relation_table, $relation_field, $relation_val, $field, $val) {
+                $movies = \KKPhim\Core\Models\Movie::when($relation_table, function ($query) use ($relation_table, $relation_field, $relation_val, $field, $val) {
                     $query->whereHas($relation_table, function ($rel) use ($relation_field, $relation_val, $field, $val) {
                         $rel->where($relation_field, $relation_val)->where(array_combine(explode(",", $field), explode(",", $val)));
                     });

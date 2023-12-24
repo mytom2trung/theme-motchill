@@ -1,13 +1,7 @@
 {
-    "name": "ophimcms/theme-motchill",
-    "description": "Ophim's motchill theme",
+    "name": "pnm/theme-motchill",
+    "description": "OPhim theme motchill mod",
     "type": "library",
-    "authors": [
-        {
-            "name": "ophimcms",
-            "email": "opdlnf01@gmail.com"
-        }
-    ],
     "require": {
         "laravel/framework": "^6|^7|^8",
         "ckfinder/ckfinder-laravel-package": "v3.5.2.1",
@@ -17,17 +11,14 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Ophim\\ThemeMotchill\\": "src/",
-            "Ophim\\ThemeMotchill\\Database\\Factories\\": "database/factories/",
-            "Ophim\\ThemeMotchill\\Database\\Seeders\\": "database/seeders/"
+            "Pnm\\ThemeMotchill\\": "src/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Ophim\\ThemeMotchill\\ThemeMotchillServiceProvider"
-            ]
+    "authors": [
+        {
+            "name": "liumen",
+            "email": "contact.animehay@gmail.com"
         }
-    },
+    ],
     "minimum-stability": "stable"
 }
