@@ -1,11 +1,11 @@
 {
-    "name": "itachicms/theme-motchill-mod",
+    "name": "ophimcms/theme-motchill",
     "description": "Ophim's motchill theme",
     "type": "library",
     "authors": [
         {
-            "name": "itachicms",
-            "email": "contact.animehay@gmail.com"
+            "name": "ophimcms",
+            "email": "opdlnf01@gmail.com"
         }
     ],
     "require": {
