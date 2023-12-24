@@ -9,21 +9,21 @@
                 try {
                     if ($relation == 'trending') {
                         $dataMovies = [
-                            'd' => \KKPhim\Core\Models\Movie::where('is_copyright', 0)
+                            'd' => \Ophim\Core\Models\Movie::where('is_copyright', 0)
                                 ->orderBy('view_day', 'desc')
                                 ->limit($limit)
                                 ->get(),
-                            'w' => \KKPhim\Core\Models\Movie::where('is_copyright', 0)
+                            'w' => \Ophim\Core\Models\Movie::where('is_copyright', 0)
                                 ->orderBy('view_week', 'desc')
                                 ->limit($limit)
                                 ->get(),
-                            'm' => \KKPhim\Core\Models\Movie::where('is_copyright', 0)
+                            'm' => \Ophim\Core\Models\Movie::where('is_copyright', 0)
                                 ->orderBy('view_month', 'desc')
                                 ->limit($limit)
                                 ->get(),
                         ];
                     } else {
-                        $dataMovies = \KKPhim\Core\Models\Movie::when($relation, function ($query) use ($relation, $field, $val) {
+                        $dataMovies = \Ophim\Core\Models\Movie::when($relation, function ($query) use ($relation, $field, $val) {
                             $query->whereHas($relation, function ($rel) use ($field, $val) {
                                 $rel->where($field, $val);
                             });

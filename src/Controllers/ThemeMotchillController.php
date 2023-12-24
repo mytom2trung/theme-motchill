@@ -1,17 +1,17 @@
 <?php
 
-namespace KKPhim\Thememotchill\Controllers;
+namespace Ophim\Thememotchill\Controllers;
 
 use Backpack\Settings\app\Models\Setting;
 use Illuminate\Http\Request;
-use KKPhim\Core\Models\Actor;
-use KKPhim\Core\Models\Catalog;
-use KKPhim\Core\Models\Category;
-use KKPhim\Core\Models\Director;
-use KKPhim\Core\Models\Episode;
-use KKPhim\Core\Models\Movie;
-use KKPhim\Core\Models\Region;
-use KKPhim\Core\Models\Tag;
+use Ophim\Core\Models\Actor;
+use Ophim\Core\Models\Catalog;
+use Ophim\Core\Models\Category;
+use Ophim\Core\Models\Director;
+use Ophim\Core\Models\Episode;
+use Ophim\Core\Models\Movie;
+use Ophim\Core\Models\Region;
+use Ophim\Core\Models\Tag;
 
 use Illuminate\Support\Facades\Cache;
 
@@ -240,7 +240,7 @@ class ThememotchillController
 
             [$relation_table, $relation_field, $relation_val] = array_merge($relation_config, ['', '', '']);
             try {
-                $movies = \KKPhim\Core\Models\Movie::when($relation_table, function ($query) use ($relation_table, $relation_field, $relation_val, $field, $val) {
+                $movies = \Ophim\Core\Models\Movie::when($relation_table, function ($query) use ($relation_table, $relation_field, $relation_val, $field, $val) {
                     $query->whereHas($relation_table, function ($rel) use ($relation_field, $relation_val, $field, $val) {
                         $rel->where($relation_field, $relation_val)->where(array_combine(explode(",", $field), explode(",", $val)));
                     });

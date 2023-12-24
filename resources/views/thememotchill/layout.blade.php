@@ -1,7 +1,7 @@
 @extends('themes::thememotchill.layout_core')
 
 @php
-    $menu = \KKPhim\Core\Models\Menu::getTree();
+    $menu = \Ophim\Core\Models\Menu::getTree();
     $logo = setting('site_logo', '');
     preg_match('@src="([^"]+)"@', $logo, $match);
 

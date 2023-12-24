@@ -20,7 +20,7 @@
             <div class="col-lg-4 col-xs-6">
                 <select name="filter[category]" form="form-filter" class="input form-control" id="cat_id">
                     <option value="">Thể loại</option>
-                    @foreach (\KKPhim\Core\Models\Category::fromCache()->all() as $item)
+                    @foreach (\Ophim\Core\Models\Category::fromCache()->all() as $item)
                         <option value="{{ $item->id }}" @if (
                             (isset(request('filter')['category']) && request('filter')['category'] == $item->id) ||
                                 (isset($category) && $category->id == $item->id)) selected @endif>
@@ -31,7 +31,7 @@
             <div class="col-lg-4 col-xs-6">
                 <select name="filter[region]" form="form-filter" class="input form-control" id="city_id">
                     <option value="">Quốc gia</option>
-                    @foreach (\KKPhim\Core\Models\Region::fromCache()->all() as $item)
+                    @foreach (\Ophim\Core\Models\Region::fromCache()->all() as $item)
                         <option value="{{ $item->id }}" @if (
                             (isset(request('filter')['region']) && request('filter')['region'] == $item->id) ||
                                 (isset($region) && $region->id == $item->id)) selected @endif>

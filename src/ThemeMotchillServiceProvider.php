@@ -1,6 +1,6 @@
 <?php
 
-namespace KKPhim\ThemeMotchill;
+namespace Ophim\ThemeMotchill;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -33,7 +33,7 @@ class ThemeMotchillServiceProvider extends ServiceProvider
             'motchill' => [
                 'name' => 'Motchill',
                 'author' => 'support@kkphim.com',
-                'package_name' => 'haiau009/kkphim-motchill',
+                'package_name' => 'pnm/theme-motchill',
                 'publishes' => ['motchill-assets'],
                 'preview_image' => '',
                 'options' => [

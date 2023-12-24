@@ -1,7 +1,7 @@
 @extends('themes::thememotchill.layout')
 
 @php
-    use KKPhim\Core\Models\Movie;
+    use Ophim\Core\Models\Movie;
 
     $recommendations = Cache::remember('site.movies.recommendations', setting('site_cache_ttl', 5 * 60), function () {
         $lists = preg_split('/[\n\r]+/', get_theme_option('recommendations'));

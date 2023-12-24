@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use KKPhim\ThemeMotchill\Controllers\ThemeMotchillController;
+use Ophim\ThemeMotchill\Controllers\ThemeMotchillController;
 
 // --------------------------
 // Custom Backpack Routes
@@ -44,8 +44,8 @@ Route::group([
         ->where(['movie' => '.+', 'movie_id' => '[0-9]+', 'episode' => '.+', 'id' => '[0-9]+'])
         ->name('episodes.show');
 
-    Route::post(sprintf('/%s/{movie}/{episode}/report', config('kkphim.routes.movie', 'phim')), [ThemeMotchillController::class, 'reportEpisode'])->name('episodes.report');
-    Route::post(sprintf('/%s/{movie}/rate', config('kkphim.routes.movie', 'phim')), [ThemeMotchillController::class, 'rateMovie'])->name('movie.rating');
+    Route::post(sprintf('/%s/{movie}/{episode}/report', config('ophim.routes.movie', 'phim')), [ThemeMotchillController::class, 'reportEpisode'])->name('episodes.report');
+    Route::post(sprintf('/%s/{movie}/rate', config('ophim.routes.movie', 'phim')), [ThemeMotchillController::class, 'rateMovie'])->name('movie.rating');
 
     Route::get(setting('site_routes_movie', '/phim/{movie}'), [ThemeMotchillController::class, 'getMovieOverview'])
         ->where(['movie' => '.+', 'id' => '[0-9]+'])
